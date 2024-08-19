@@ -1,0 +1,92 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserStatus {
+  ONLINE
+  AWAY
+  DONTDISTURB
+  OFFLINE
+}
+
+model User {
+  id         String @id @default(uuid())
+  username   String @unique @db.VarChar(64)
+  email      String @unique @db.VarChar(64)
+  password   String @db.VarChar(64)
+  imageUrl   String @db.Text
+  friendCode String @unique
+
+  createdAt DateTime @default(now())
+
+  sentRequests     FriendRequest[] @relation("sender")
+  receivedRequests FriendRequest[] @relation("receiver")
+
+  conversations        Conversation[] @relation("conversation")
+  createdConversations Conversation[] @relation("admin")
+
+  messages Message[]
+
+  status UserStatus @default(OFFLINE)
+}
+
+model FriendRequest {
+  id String @id @default(uuid())
+
+  createdAt DateTime @default(now())
+
+  sender     User   @relation("sender", fields: [senderId], references: [id])
+  senderId   String
+  receiver   User   @relation("receiver", fields: [receiverId], references: [id])
+  receiverId String
+
+  status InviteStatus
+}
+
+enum InviteStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  CANCELED
+  DELETED
+}
+
+model Conversation {
+  id      String  @id @default(uuid())
+  name    String? @db.VarChar(64)
+  isGroup Boolean
+
+  createdAt DateTime @default(now())
+
+  admin   User   @relation("admin", fields: [adminId], references: [id])
+  adminId String
+
+  members User[] @relation("conversation")
+
+  messages Message[]
+}
+
+model Message {
+  id      String  @id @default(uuid())
+  content String  @db.Text
+  fileUrl String? @db.Text
+
+  createdAt DateTime @default(now())
+
+  member   User   @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  memberId String
+
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  conversationId String
+}
