@@ -38049,9 +38049,22 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 var Conversations = function Conversations() {
   var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_14__.useParams)(),
     id = _useParams.id;
+  var _useFriends = (0,_hooks_useFriends__WEBPACK_IMPORTED_MODULE_9__.useFriends)(),
+    friends = _useFriends.friends,
+    loadingFriends = _useFriends.loadingFriends;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState2 = _slicedToArray(_useState, 2),
+    friendName = _useState2[0],
+    setFriendName = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState4 = _slicedToArray(_useState3, 2),
+    groupName = _useState4[0],
+    setGroupName = _useState4[1];
   if (!id) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_element_navigation__WEBPACK_IMPORTED_MODULE_2__["default"], {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_element_conversation_bar__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        friends: friends,
+        loadingFriends: loadingFriends,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
           className: "flex flex-col h-full items-center justify-center",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_15__["default"], {
@@ -38068,17 +38081,6 @@ var Conversations = function Conversations() {
   var _useConversation = (0,_hooks_useConversations__WEBPACK_IMPORTED_MODULE_5__.useConversation)(id),
     conversation = _useConversation.conversation,
     loadingConversation = _useConversation.loadingConversation;
-  var _useFriends = (0,_hooks_useFriends__WEBPACK_IMPORTED_MODULE_9__.useFriends)(),
-    friends = _useFriends.friends,
-    loadingFriends = _useFriends.loadingFriends;
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-    _useState2 = _slicedToArray(_useState, 2),
-    friendName = _useState2[0],
-    setFriendName = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-    _useState4 = _slicedToArray(_useState3, 2),
-    groupName = _useState4[0],
-    setGroupName = _useState4[1];
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState6 = _slicedToArray(_useState5, 2),
     opened = _useState6[0],
@@ -38132,6 +38134,8 @@ var Conversations = function Conversations() {
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_element_navigation__WEBPACK_IMPORTED_MODULE_2__["default"], {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_element_conversation_bar__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      friends: friends,
+      loadingFriends: loadingFriends,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
         className: "flex h-full flex-col gap-2 items-center bg-background-950",
         children: loadingConversation ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
@@ -38320,9 +38324,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ ConversationBar)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(217);
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(218);
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(219);
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(217);
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(218);
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(219);
 /* harmony import */ var _ui_separator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(173);
 /* harmony import */ var _ui_skeleton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(134);
 /* harmony import */ var _ui_input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(143);
@@ -38330,15 +38334,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ui_checkbox__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(175);
 /* harmony import */ var _ui_button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(148);
 /* harmony import */ var _ui_form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(144);
-/* harmony import */ var _hooks_useFriends__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(139);
-/* harmony import */ var _user_item_scroll__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(178);
-/* harmony import */ var _hooks_useConversations__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(158);
-/* harmony import */ var _conversation_item__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(179);
-/* harmony import */ var _hookform_resolvers_zod__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(150);
-/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(145);
-/* harmony import */ var _lib_zod_schemas__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(152);
-/* harmony import */ var _hooks_useConversationsSocket__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(216);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(56);
+/* harmony import */ var _user_item_scroll__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(178);
+/* harmony import */ var _hooks_useConversations__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(158);
+/* harmony import */ var _conversation_item__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(179);
+/* harmony import */ var _hookform_resolvers_zod__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(150);
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(145);
+/* harmony import */ var _lib_zod_schemas__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(152);
+/* harmony import */ var _hooks_useConversationsSocket__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(216);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(56);
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -38374,23 +38377,21 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
-
 function ConversationBar(_ref) {
-  var children = _ref.children;
-  var _useFriends = (0,_hooks_useFriends__WEBPACK_IMPORTED_MODULE_8__.useFriends)(),
-    friends = _useFriends.friends,
-    loadingFriends = _useFriends.loadingFriends;
-  var _useConversations = (0,_hooks_useConversations__WEBPACK_IMPORTED_MODULE_10__.useConversations)(),
+  var children = _ref.children,
+    friends = _ref.friends,
+    loadingFriends = _ref.loadingFriends;
+  var _useConversations = (0,_hooks_useConversations__WEBPACK_IMPORTED_MODULE_9__.useConversations)(),
     conversations = _useConversations.conversations,
     setConversations = _useConversations.setConversations,
     loadingConversations = _useConversations.loadingConversations,
     refreshConversations = _useConversations.refreshConversations;
-  (0,_hooks_useConversationsSocket__WEBPACK_IMPORTED_MODULE_14__.useConversationsSocket)({
+  (0,_hooks_useConversationsSocket__WEBPACK_IMPORTED_MODULE_13__.useConversationsSocket)({
     conversations: conversations,
     setConversations: setConversations
   });
-  var createInvite = (0,_hooks_useConversations__WEBPACK_IMPORTED_MODULE_10__.useCreatePrivateConv)(refreshConversations);
-  var createGroup = (0,_hooks_useConversations__WEBPACK_IMPORTED_MODULE_10__.useCreateGroup)();
+  var createInvite = (0,_hooks_useConversations__WEBPACK_IMPORTED_MODULE_9__.useCreatePrivateConv)(refreshConversations);
+  var createGroup = (0,_hooks_useConversations__WEBPACK_IMPORTED_MODULE_9__.useCreateGroup)();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
     opened = _useState2[0],
@@ -38411,8 +38412,8 @@ function ConversationBar(_ref) {
     _useState8 = _slicedToArray(_useState7, 2),
     userData = _useState8[0],
     setUserData = _useState8[1];
-  var groupForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_16__.useForm)({
-    resolver: (0,_hookform_resolvers_zod__WEBPACK_IMPORTED_MODULE_12__.zodResolver)(_lib_zod_schemas__WEBPACK_IMPORTED_MODULE_13__.groupCreationSchema),
+  var groupForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_15__.useForm)({
+    resolver: (0,_hookform_resolvers_zod__WEBPACK_IMPORTED_MODULE_11__.zodResolver)(_lib_zod_schemas__WEBPACK_IMPORTED_MODULE_12__.groupCreationSchema),
     defaultValues: {
       name: "",
       userIds: []
@@ -38449,68 +38450,68 @@ function ConversationBar(_ref) {
   if (!isMounted) {
     return null;
   }
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
     className: "flex h-full overflow-hidden",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
       className: "min-w-80 p-8 bg-background-900",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
         className: "flex justify-between items-center",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("h1", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("h1", {
           className: "text-2xl font-medium",
           children: "Chat"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
           className: "flex gap-3",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(_ui_dialog__WEBPACK_IMPORTED_MODULE_4__.Dialog, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(_ui_dialog__WEBPACK_IMPORTED_MODULE_4__.Dialog, {
             open: dialogOpen,
             onOpenChange: setDialogOpen,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ui_dialog__WEBPACK_IMPORTED_MODULE_4__.DialogTrigger, {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_17__["default"], {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_ui_dialog__WEBPACK_IMPORTED_MODULE_4__.DialogTrigger, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_16__["default"], {
                 size: "36",
                 className: "pl-[6px] pr-[2px] hover:bg-background-700 bg-background-800 text-background-400 rounded-lg"
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(_ui_dialog__WEBPACK_IMPORTED_MODULE_4__.DialogContent, {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ui_dialog__WEBPACK_IMPORTED_MODULE_4__.DialogHeader, {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ui_dialog__WEBPACK_IMPORTED_MODULE_4__.DialogTitle, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(_ui_dialog__WEBPACK_IMPORTED_MODULE_4__.DialogContent, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_ui_dialog__WEBPACK_IMPORTED_MODULE_4__.DialogHeader, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_ui_dialog__WEBPACK_IMPORTED_MODULE_4__.DialogTitle, {
                   children: "Create group"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.Form, _objectSpread(_objectSpread({}, groupForm), {}, {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("form", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.Form, _objectSpread(_objectSpread({}, groupForm), {}, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("form", {
                   onSubmit: groupForm.handleSubmit(onSubmit),
                   className: "space-y-4",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormField, {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormField, {
                     control: groupForm.control,
                     name: "name",
                     render: function render(_ref2) {
                       var field = _ref2.field;
-                      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormItem, {
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormLabel, {
+                      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormItem, {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormLabel, {
                           children: "Group name"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormControl, {
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ui_input__WEBPACK_IMPORTED_MODULE_3__.Input, _objectSpread({}, field))
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormMessage, {})]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormControl, {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_ui_input__WEBPACK_IMPORTED_MODULE_3__.Input, _objectSpread({}, field))
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormMessage, {})]
                       });
                     }
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormField, {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormField, {
                     control: groupForm.control,
                     name: "userIds",
                     render: function render() {
-                      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormItem, {
+                      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormItem, {
                         className: "space-y-0",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormLabel, {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormLabel, {
                           children: "Invite users to the group"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
                           className: "w-72 max-h-48 overflow-scroll",
                           children: friends.map(function (item) {
-                            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormField, {
+                            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormField, {
                               control: groupForm.control,
                               name: "userIds",
                               render: function render(_ref3) {
                                 var _field$value, _item$user2, _item$user3, _item$user4;
                                 var field = _ref3.field;
-                                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormItem, {
+                                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormItem, {
                                   className: "ml-2 w-64",
-                                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormControl, {
-                                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ui_checkbox__WEBPACK_IMPORTED_MODULE_5__.Checkbox, {
+                                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormControl, {
+                                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_ui_checkbox__WEBPACK_IMPORTED_MODULE_5__.Checkbox, {
                                       className: "relative top-11 left-56",
                                       checked: (_field$value = field.value) === null || _field$value === void 0 ? void 0 : _field$value.includes(item.user.id),
                                       onCheckedChange: function onCheckedChange(checked) {
@@ -38520,9 +38521,9 @@ function ConversationBar(_ref) {
                                         }));
                                       }
                                     })
-                                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormLabel, {
+                                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormLabel, {
                                     className: "ml-4",
-                                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_user_item_scroll__WEBPACK_IMPORTED_MODULE_9__["default"], {
+                                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_user_item_scroll__WEBPACK_IMPORTED_MODULE_8__["default"], {
                                       id: (_item$user2 = item.user) === null || _item$user2 === void 0 ? void 0 : _item$user2.id,
                                       username: (_item$user3 = item.user) === null || _item$user3 === void 0 ? void 0 : _item$user3.username,
                                       imageUrl: (_item$user4 = item.user) === null || _item$user4 === void 0 ? void 0 : _item$user4.imageUrl,
@@ -38533,18 +38534,18 @@ function ConversationBar(_ref) {
                               }
                             }, item.user.id);
                           })
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormMessage, {})]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_ui_form__WEBPACK_IMPORTED_MODULE_7__.FormMessage, {})]
                       });
                     }
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ui_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_ui_button__WEBPACK_IMPORTED_MODULE_6__.Button, {
                     type: "submit",
                     children: "Create"
                   })]
                 })
               }))]
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("button", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_18__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("button", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_17__["default"], {
               size: "36",
               className: "p-1 hover:bg-background-700 bg-background-800 text-background-400 rounded-lg",
               onClick: function onClick() {
@@ -38553,25 +38554,25 @@ function ConversationBar(_ref) {
             })
           })]
         })]
-      }), opened && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+      }), opened && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
         className: "mt-4",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ui_input__WEBPACK_IMPORTED_MODULE_3__.Input, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_ui_input__WEBPACK_IMPORTED_MODULE_3__.Input, {
           className: "z-10",
           placeholder: "Search",
           onChange: function onChange(e) {
             return setFriendName(e.target.value);
           },
           value: friendName
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
           className: "relative top-1 flex flex-col gap-1 bg-background-950 p-2 max-h-48 rounded-b-md overflow-y-scroll",
-          children: [loadingFriends && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ui_skeleton__WEBPACK_IMPORTED_MODULE_2__.Skeleton, {
+          children: [loadingFriends && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_ui_skeleton__WEBPACK_IMPORTED_MODULE_2__.Skeleton, {
             className: "mt-6 w-50 h-12"
-          }), filteredFriends.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("p", {
+          }), filteredFriends.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("p", {
             className: "text-center text-background-200 text-sm font-medium",
             children: "No friends found"
           }) : filteredFriends.map(function (e) {
             var _e$user, _e$user2, _e$user3;
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_user_item_scroll__WEBPACK_IMPORTED_MODULE_9__["default"], {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_user_item_scroll__WEBPACK_IMPORTED_MODULE_8__["default"], {
               id: (_e$user = e.user) === null || _e$user === void 0 ? void 0 : _e$user.id,
               username: (_e$user2 = e.user) === null || _e$user2 === void 0 ? void 0 : _e$user2.username,
               imageUrl: (_e$user3 = e.user) === null || _e$user3 === void 0 ? void 0 : _e$user3.imageUrl,
@@ -38579,20 +38580,20 @@ function ConversationBar(_ref) {
             }, e.id);
           })]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ui_separator__WEBPACK_IMPORTED_MODULE_1__.Separator, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_ui_separator__WEBPACK_IMPORTED_MODULE_1__.Separator, {
         className: "mt-5"
-      }), !loadingConversations && conversations.length === 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+      }), !loadingConversations && conversations.length === 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
         className: "flex flex-col items-center justify-center h-full text-background-500 text-sm font-medium",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_19__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(lucide_react__WEBPACK_IMPORTED_MODULE_18__["default"], {
           size: "36"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("p", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("p", {
           className: "text-center",
           children: "No conversations started"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
         className: "mt-6 flex flex-col gap-3",
         children: conversations.map(function (e) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_conversation_item__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_conversation_item__WEBPACK_IMPORTED_MODULE_10__["default"], {
             id: e.id,
             name: e.name,
             isGroup: e.isGroup,
@@ -38602,7 +38603,7 @@ function ConversationBar(_ref) {
           }, e.id);
         })
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
       className: "flex-auto",
       children: children
     })]
