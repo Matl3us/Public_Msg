@@ -51,19 +51,43 @@ self.addEventListener("install", function (event) {
 });
 self.addEventListener("fetch", function (event) {
   var request = event.request;
-  if (request.mode === "websocket" || request.method === "GET") {
-    event.respondWith(caches.open(cacheName).then(function (cache) {
-      return fetch(event.request.url).then(function (fetchedResponse) {
-        cache.put(event.request, fetchedResponse.clone());
-        return fetchedResponse;
-      })["catch"](function () {
-        return cache.match(event.request.url);
-      });
-    }));
+  var cachedTypes = ["document", "script", "image", "manifest", "json"];
+  if (request.method === "GET") {
+    if (cachedTypes.includes(request.destination)) {
+      event.respondWith(caches.open(cacheName).then(function (cache) {
+        return fetch(event.request.url).then(function (fetchedResponse) {
+          cache.put(event.request, fetchedResponse.clone());
+          return fetchedResponse;
+        })["catch"](function () {
+          return cache.match(event.request.url);
+        });
+      }));
+    }
+  }
+  return;
+  console.log(request);
+});
+
+/*
+if (request.mode !== "websocket" || request.method === "GET") {
+    event.respondWith(
+      caches.open(cacheName).then((cache) => {
+        return fetch(event.request.url)
+          .then((fetchedResponse) => {
+            cache.put(event.request, fetchedResponse.clone());
+
+            return fetchedResponse;
+          })
+          .catch(() => {
+            return cache.match(event.request.url);
+          });
+      })
+    );
   } else {
     return;
   }
-});
+*/
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (null);
 /******/ })()
 ;
