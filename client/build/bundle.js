@@ -50721,7 +50721,7 @@ __webpack_require__.r(__webpack_exports__);
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
-    navigator.serviceWorker.register("/sw.js").then(function (registration) {
+    navigator.serviceWorker.register("./sw.js").then(function (registration) {
       console.log("SW registered: ", registration.scope);
     })["catch"](function (registrationError) {
       console.log("SW registration failed: ", registrationError);
