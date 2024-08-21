@@ -51,7 +51,7 @@ self.addEventListener("install", function (event) {
 });
 self.addEventListener("fetch", function (event) {
   var request = event.request;
-  var cachedTypes = ["document", "script", "image", "manifest", "json"];
+  var cachedTypes = ["document", "script", "image", "manifest", "json", "serviceworker"];
   if (request.method === "GET") {
     if (cachedTypes.includes(request.destination)) {
       event.respondWith(caches.open(cacheName).then(function (cache) {
