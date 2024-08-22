@@ -38031,6 +38031,15 @@ var Conversations = function Conversations() {
     _useState12 = _slicedToArray(_useState11, 2),
     userData = _useState12[0],
     setUserData = _useState12[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var _conversation$name;
+    var item = localStorage.getItem("userData");
+    if (item) {
+      var obj = JSON.parse(item);
+      setUserData(obj);
+    }
+    setGroupName((_conversation$name = conversation === null || conversation === void 0 ? void 0 : conversation.name) !== null && _conversation$name !== void 0 ? _conversation$name : "");
+  }, [conversation]);
   if (!id) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_element_navigation__WEBPACK_IMPORTED_MODULE_2__["default"], {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_element_conversation_bar__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -38049,15 +38058,6 @@ var Conversations = function Conversations() {
       })
     });
   }
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var _conversation$name;
-    var item = localStorage.getItem("userData");
-    if (item) {
-      var obj = JSON.parse(item);
-      setUserData(obj);
-    }
-    setGroupName((_conversation$name = conversation === null || conversation === void 0 ? void 0 : conversation.name) !== null && _conversation$name !== void 0 ? _conversation$name : "");
-  }, [conversation]);
   var name = "";
   var imageUrl = "";
   if (!loadingConversation) {
