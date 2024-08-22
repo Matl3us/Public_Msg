@@ -38039,7 +38039,8 @@ var Conversations = function Conversations() {
       setUserData(obj);
     }
     setGroupName((_conversation$name = conversation === null || conversation === void 0 ? void 0 : conversation.name) !== null && _conversation$name !== void 0 ? _conversation$name : "");
-  }, [conversation]);
+  }, [conversation, id]);
+  console.log(conversation);
   if (!id) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_element_navigation__WEBPACK_IMPORTED_MODULE_2__["default"], {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_element_conversation_bar__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -38064,7 +38065,7 @@ var Conversations = function Conversations() {
     var otherUsers = conversation === null || conversation === void 0 ? void 0 : conversation.members.filter(function (member) {
       return member.id !== userData.id;
     });
-    if (otherUsers.length > 1) {
+    if ((otherUsers === null || otherUsers === void 0 ? void 0 : otherUsers.length) > 1) {
       name = conversation !== null && conversation !== void 0 && conversation.name ? conversation === null || conversation === void 0 ? void 0 : conversation.name : otherUsers[0].username;
       imageUrl = otherUsers[0].imageUrl;
     } else {
@@ -38076,7 +38077,7 @@ var Conversations = function Conversations() {
     var names = conversation === null || conversation === void 0 ? void 0 : conversation.members.map(function (m) {
       return m.username;
     });
-    return item.user.username.includes(friendName) && !names.includes(item.user.username);
+    return item.user.username.includes(friendName) && !(names !== null && names !== void 0 && names.includes(item.user.username));
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_element_navigation__WEBPACK_IMPORTED_MODULE_2__["default"], {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_element_conversation_bar__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -38178,7 +38179,7 @@ var Conversations = function Conversations() {
                         children: "Members"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
                         className: "flex flex-col gap-[1px]",
-                        children: conversation.members.map(function (m) {
+                        children: conversation === null || conversation === void 0 ? void 0 : conversation.members.map(function (m) {
                           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
                             className: "flex items-center gap-4 p-2 hover:bg-background-800 rounded-md",
                             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("img", {
@@ -38193,7 +38194,7 @@ var Conversations = function Conversations() {
                             })]
                           }, m.id);
                         })
-                      }), conversation.isGroup && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.Fragment, {
+                      }), (conversation === null || conversation === void 0 ? void 0 : conversation.isGroup) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.Fragment, {
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("button", {
                           className: "flex gap-2 items-center justify-center hover:bg-background-800 py-2 pr-[12px] rounded-lg",
                           onClick: function onClick() {
