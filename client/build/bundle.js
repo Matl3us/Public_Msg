@@ -11423,7 +11423,7 @@ var SocketProvider = function SocketProvider(_ref) {
     isConnected = _useState4[0],
     setIsConnected = _useState4[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var socket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_1__.io)({
+    var socket = (0,socket_io_client__WEBPACK_IMPORTED_MODULE_1__.io)(":".concat(3000), {
       path: "/api/socket/io",
       addTrailingSlash: false
     });
