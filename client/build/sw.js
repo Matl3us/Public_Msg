@@ -47,7 +47,12 @@ __webpack_require__.r(__webpack_exports__);
 
 var cacheName = "PWA-Msg-Cache";
 self.addEventListener("install", function (event) {
+  console.log("installation");
   event.waitUntil(caches.open(cacheName));
+  self.skipWaiting();
+});
+self.addEventListener("activate", function (event) {
+  console.log("activation");
 });
 self.addEventListener("fetch", function (event) {
   var request = event.request;
