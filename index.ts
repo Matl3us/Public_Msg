@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import path from "path";
 import cookieParser from "cookie-parser";
-import expressStaticGzip from "express-static-gzip";
+//import expressStaticGzip from "express-static-gzip";
 
 import { server, app } from "./app";
 

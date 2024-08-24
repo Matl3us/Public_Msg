@@ -56,7 +56,7 @@ self.addEventListener("activate", function (event) {
 });
 self.addEventListener("fetch", function (event) {
   var request = event.request;
-  var cachedTypes = ["document", "script", "image", "manifest", "json", "serviceworker"];
+  var cachedTypes = ["document", "script", "image", "manifest", "json"];
   if (request.method === "GET") {
     if (cachedTypes.includes(request.destination)) {
       event.respondWith(caches.open(cacheName).then(function (cache) {
@@ -74,44 +74,6 @@ self.addEventListener("fetch", function (event) {
 
 /*
 
-### Cache first, falling back to network ###
-
-self.addEventListener("fetch", (event) => {
-  const { request } = event;
-  const cachedTypes = [
-    "document",
-    "script",
-    "image",
-    "manifest",
-    "json",
-    "serviceworker",
-  ];
-  if (request.method === "GET") {
-    if (cachedTypes.includes(request.destination)) {
-      event.respondWith(
-        caches.open(cacheName).then((cache) => {
-          return cache.match(event.request.url).then((cachedResponse) => {
-            if (cachedResponse) {
-              return cachedResponse;
-            }
-
-            return fetch(event.request).then((fetchedResponse) => {
-              cache.put(event.request, fetchedResponse.clone());
-
-              return fetchedResponse;
-            });
-          });
-        })
-      );
-    }
-  } else {
-    return;
-  }
-});
-*/
-
-/*
-
 ### Network first, falling back to cache ###
 
 self.addEventListener("fetch", (event: FetchEvent) => {
@@ -122,7 +84,6 @@ self.addEventListener("fetch", (event: FetchEvent) => {
     "image",
     "manifest",
     "json",
-    "serviceworker",
   ];
   if (request.method === "GET") {
     if (cachedTypes.includes(request.destination)) {
@@ -143,6 +104,68 @@ self.addEventListener("fetch", (event: FetchEvent) => {
   }
   return;
 });
+
+### Cache first, falling back to network ###
+
+self.addEventListener("fetch", (event) => {
+  const { request } = event;
+  const cachedTypes = [
+    "document",
+    "script",
+    "image",
+    "manifest",
+    "json",
+  ];
+  if (request.method === "GET") {
+    if (cachedTypes.includes(request.destination)) {
+      event.respondWith(
+        caches.open(cacheName).then((cache) => {
+          return cache.match(event.request.url).then((cachedResponse) => {
+            if (cachedResponse) {
+              return cachedResponse;
+            }
+
+            return fetch(event.request).then((fetchedResponse) => {
+              cache.put(event.request, fetchedResponse.clone());
+
+              return fetchedResponse;
+            });
+          });
+        })
+      );
+    }
+  }
+  return;
+});
+
+### Stale-while-revalidate ###
+
+self.addEventListener('fetch', (event) => {
+  const { request } = event;
+  const cachedTypes = [
+    "document",
+    "script",
+    "image",
+    "manifest",
+    "json",
+  ];
+  if (request.method === "GET") {
+    if (cachedTypes.includes(request.destination)) {
+    event.respondWith(caches.open(cacheName).then((cache) => {
+      return cache.match(event.request).then((cachedResponse) => {
+        const fetchedResponse = fetch(event.request).then((networkResponse) => {
+          cache.put(event.request, networkResponse.clone());
+
+          return networkResponse;
+        });
+
+        return cachedResponse || fetchedResponse;
+      });
+    }));
+  }
+  return;
+});
+
 */
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (null);
