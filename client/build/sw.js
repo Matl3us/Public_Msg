@@ -62,12 +62,14 @@ self.addEventListener("fetch", function (event) {
     if (cachedTypes.includes(request.destination)) {
       console.log("Cached:".concat(request.url));
       event.respondWith(caches.open(cacheName).then(function (cache) {
-        return cache.match(event.request).then(function (cachedResponse) {
-          var fetchedResponse = fetch(event.request).then(function (networkResponse) {
-            cache.put(event.request, networkResponse.clone());
-            return networkResponse;
+        return cache.match(event.request.url).then(function (cachedResponse) {
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+          return fetch(event.request).then(function (fetchedResponse) {
+            cache.put(event.request, fetchedResponse.clone());
+            return fetchedResponse;
           });
-          return cachedResponse || fetchedResponse;
         });
       }));
     }
