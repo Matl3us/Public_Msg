@@ -60,19 +60,17 @@ self.addEventListener("fetch", function (event) {
   if (request.method === "GET") {
     if (cachedTypes.includes(request.destination)) {
       event.respondWith(caches.open(cacheName).then(function (cache) {
-        return cache.match(event.request.url).then(function (cachedResponse) {
-          if (cachedResponse) {
-            return cachedResponse;
-          }
-          return fetch(event.request).then(function (fetchedResponse) {
-            cache.put(event.request, fetchedResponse.clone());
-            return fetchedResponse;
+        return cache.match(event.request).then(function (cachedResponse) {
+          var fetchedResponse = fetch(event.request).then(function (networkResponse) {
+            cache.put(event.request, networkResponse.clone());
+            return networkResponse;
           });
+          return cachedResponse || fetchedResponse;
         });
       }));
     }
+    return;
   }
-  return;
 });
 /*
 
@@ -142,30 +140,29 @@ self.addEventListener("fetch", (event) => {
 
 ### Stale-while-revalidate ###
 
-self.addEventListener('fetch', (event) => {
+self.addEventListener("fetch", (event) => {
   const { request } = event;
-  const cachedTypes = [
-    "document",
-    "script",
-    "image",
-    "manifest",
-    "json",
-  ];
+  const cachedTypes = ["document", "script", "image", "manifest", "json"];
   if (request.method === "GET") {
     if (cachedTypes.includes(request.destination)) {
-    event.respondWith(caches.open(cacheName).then((cache) => {
-      return cache.match(event.request).then((cachedResponse) => {
-        const fetchedResponse = fetch(event.request).then((networkResponse) => {
-          cache.put(event.request, networkResponse.clone());
+      event.respondWith(
+        caches.open(cacheName).then((cache) => {
+          return cache.match(event.request).then((cachedResponse) => {
+            const fetchedResponse = fetch(event.request).then(
+              (networkResponse) => {
+                cache.put(event.request, networkResponse.clone());
 
-          return networkResponse;
-        });
+                return networkResponse;
+              }
+            );
 
-        return cachedResponse || fetchedResponse;
-      });
-    }));
+            return cachedResponse || fetchedResponse;
+          });
+        })
+      );
+    }
+    return;
   }
-  return;
 });
 
 */
