@@ -56,9 +56,11 @@ self.addEventListener("activate", function (event) {
 });
 self.addEventListener("fetch", function (event) {
   var request = event.request;
+  console.log(request);
   var cachedTypes = ["document", "script", "image", "manifest", "json"];
   if (request.method === "GET") {
     if (cachedTypes.includes(request.destination)) {
+      console.log("Cached:".concat(request.url));
       event.respondWith(caches.open(cacheName).then(function (cache) {
         return cache.match(event.request).then(function (cachedResponse) {
           var fetchedResponse = fetch(event.request).then(function (networkResponse) {
