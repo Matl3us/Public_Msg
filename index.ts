@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import path from "path";
 import cookieParser from "cookie-parser";
-//import expressStaticGzip from "express-static-gzip";
+import expressStaticGzip from "express-static-gzip";
 
 import { server, app } from "./app";
 
@@ -31,16 +31,14 @@ app.use("/api/upload", uploadRouter);
 
 app.use(middleware);
 
-app.use(express.static(path.join(__dirname, "client/build")));
+//app.use(express.static(path.join(__dirname, "client/build")));
 
-/*
 app.use(
   expressStaticGzip(path.join(__dirname, "client/build"), {
     enableBrotli: true,
     orderPreference: ["br", "gz"],
   })
 );
-*/
 
 app.get("*", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
