@@ -56,18 +56,19 @@ self.addEventListener("activate", function (event) {
 });
 self.addEventListener("fetch", function (event) {
   var request = event.request;
-  console.log(request);
   var cachedTypes = ["document", "script", "image", "manifest", "json"];
   if (request.method === "GET") {
     if (cachedTypes.includes(request.destination)) {
-      console.log("Cached:".concat(request.url));
+      console.log("Checking cache for:".concat(request.url));
       event.respondWith(caches.open(cacheName).then(function (cache) {
         return cache.match(event.request.url).then(function (cachedResponse) {
           if (cachedResponse) {
+            console.log("Exists in cache:".concat(request.url));
             return cachedResponse;
           }
           return fetch(event.request).then(function (fetchedResponse) {
             cache.put(event.request, fetchedResponse.clone());
+            console.log("Fetching:".concat(request.url));
             return fetchedResponse;
           });
         });
