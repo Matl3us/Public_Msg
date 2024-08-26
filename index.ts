@@ -31,16 +31,14 @@ app.use("/api/upload", uploadRouter);
 
 app.use(middleware);
 
-app.use(express.static(path.join(__dirname, "client/build")));
+//app.use(express.static(path.join(__dirname, "client/build")));
 
-/*
 app.use(
   expressStaticGzip(path.join(__dirname, "client/build"), {
     enableBrotli: true,
     orderPreference: ["br", "gz"],
   })
 );
-*/
 
 app.get("*", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
